@@ -1,12 +1,3 @@
-import express from 'express'
-import {APP_PORT} from '@/config/constants'
+import {runServer} from './core/app'
 
-const app = express()
-
-app.get('/', (req, res) => {
-  res.send('Hello, My World!')
-})
-
-app.listen(APP_PORT, () => {
-  console.log(`Server is running at http://localhost:${APP_PORT}`)
-})
+runServer()
