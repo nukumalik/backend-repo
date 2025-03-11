@@ -4,7 +4,7 @@ import {Router} from 'express'
 
 export const userRoute = Router()
   // * Below are routes path naming follow the technical test doc (fetch-user-data & update-user-data)
-  .get('/fetch-user-data/:id', authMiddleware, UserController.getUserDetail)
+  .get('/fetch-user-data', authMiddleware, UserController.getUserList)
   .put('/update-user-data/:id', authMiddleware, UserController.updateUser)
 
   // * Below are route that follow route path convention
