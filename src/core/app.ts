@@ -15,3 +15,5 @@ export const runServer = () => {
     logger.info(`🚀 Server is running at http://localhost:${SERVER_PORT}`)
   })
 }
+
+export default app
