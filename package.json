@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "node esbuild.mjs",
-    "start": "node dist/index.js",
+    "build": "NODE_ENV=production node esbuild.mjs",
+    "start": "NODE_ENV=production node dist/index.js",
     "prepare": "husky",
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts"
@@ -18,7 +18,8 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "firebase-admin": "^13.2.0"
+    "firebase-admin": "^13.2.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.0",

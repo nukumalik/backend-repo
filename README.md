@@ -13,7 +13,9 @@ This project is a **backend application** built with **Node.js, Express.js, and 
 
 ## **⚡ Installation**
 
-Make sure you have **Node.js**. Note: this project uses `pnpm`, but free to use your preference node package manager.
+Make sure you have **Node.js**.
+
+> **_NOTE:_** this project uses `pnpm`, but free to use your preference node package manager.
 
 #### 1. Clone the repository:
 
@@ -35,6 +37,8 @@ npm install
 ```sh
 cp .env.example .env
 ```
+
+> **_NOTE:_** change the ACCESS_TOKEN value on `.env` file
 
 ## **🚀 Running The Project**
 

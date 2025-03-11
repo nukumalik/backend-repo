@@ -1,5 +1,6 @@
-import {Buffer} from 'node:buffer'
 import {NextFunction, Request, Response} from 'express'
+import {ACCESS_TOKEN, logger} from '@/config'
+import {HttpError} from '@/utils'
 
 export const authMiddleware = (
   req: Request,
@@ -7,25 +8,16 @@ export const authMiddleware = (
   next: NextFunction
 ) => {
   const authheader = req.headers.authorization
-  if (!authheader) {
-    res
-      .status(401)
-      .setHeader('WWW-Authenticate', 'Basic')
-      .json({message: 'You are not authenticated!'})
-  }
-
-  const auth = Buffer.from(authheader?.split(' ')?.[1] || '', 'base64')
-    .toString()
-    .split(':')
-  const user = auth[0]
-  const pass = auth[1]
-
-  if (user == 'admin' && pass == 'admin') {
-    next()
+  if (!authheader || authheader !== ACCESS_TOKEN) {
+    const error = HttpError.unauthorized("You're not authenticated!")
+    logger.error(
+      `${error.message} | ${req.protocol} ${error.status} | ${req.method} ${req.path}`
+    )
+    res.status(error.status).json({
+      message: error.message,
+      error: error.data
+    })
   } else {
-    res
-      .status(401)
-      .setHeader('WWW-Authenticate', 'Basic')
-      .json({message: 'You are not authenticated!'})
+    next()
   }
 }
