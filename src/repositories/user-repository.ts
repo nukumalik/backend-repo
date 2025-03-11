@@ -36,7 +36,7 @@ export class UserRepository {
     name: string,
     totalAverageWeightRatings: number,
     numberOfRents: number,
-    recentlyActive: number
+    recentlyActive: Timestamp
   ) {
     await db.collection('USERS').add({
       name,

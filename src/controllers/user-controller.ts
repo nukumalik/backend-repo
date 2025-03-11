@@ -39,10 +39,11 @@ export class UserController {
         name,
         totalAverageWeightRatings,
         numberOfRents,
-        recentlyActive
+        Timestamp.fromMillis(recentlyActive || new Date().getTime())
       )
       res.status(201).json({message: 'success'})
     } catch (error) {
+      console.log(error)
       next(error)
     }
   }
@@ -61,7 +62,7 @@ export class UserController {
           totalAverageWeightRatings || user.totalAverageWeightRatings,
         numberOfRents: numberOfRents || user.numberOfRents,
         recentlyActive: Timestamp.fromMillis(
-          recentlyActive || user.recentlyActive
+          recentlyActive || user.recentlyActive || new Date().getTime()
         )
       }
       await UserRepository.update(id, payload)
@@ -69,6 +70,7 @@ export class UserController {
         message: 'success'
       })
     } catch (error) {
+      console.log(error)
       next(error)
     }
   }
